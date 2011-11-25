@@ -6,9 +6,9 @@ redisarray
 Introduction
 ============
 
-Often we need to store a table with headers and rows or just an andjacent 2D array inside our Redis key-value store. We could quickly design our own custom solution but it probably would not be optimized for memory usage.
+Often we need to store a table with headers and rows or just an adjacent 2D array inside our Redis key-value store. We could quickly design our own custom solution but it probably would not be optimized for memory usage.
 The purpose of this project is to design general solution for storing two dimensional arrays inside Redis with memory optimization in mind. 
-How it is accomplished? All the data that is going to be writen is just sliced on pieces behind the scenes and stored in hashes with 100 of fields each which is memory efficient. To read more about this technique follow this page: http://redis.io/topics/memory-optimization
+How is that accomplished? All the data that is going to be written is just sliced on pieces behind the scenes and stored in hashes with 100 of fields each which is memory efficient. To read more about this technique follow this page: http://redis.io/topics/memory-optimization
 
 
 Compatibility
@@ -65,7 +65,7 @@ The dependencies for the gem and for developing the gem are managed by Bundler.
     cd ./redisarray
 	bundle install
 
-Specs can be run with (they require some proconditions to be met like running Redis on localhost port 6379):
+Specs can be run with (they require some preconditions to be met like running Redis on localhost port 6379):
 
 	bundle exec rspec spec
 
