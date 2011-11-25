@@ -32,15 +32,21 @@ You can start using redisarray gem like this:
 
 	require 'rubygems'
 	require 'redisarray'
+	include RedisArray
 
 	group_name = RedisHashGroup.new.name
     @workbook = RedisWorkbook.new group_name, 'my_workbook'
+	@workbook.set_sheet_data "my_sheet_name",
+                               rows = [['row 1 cell 1','row 1 cell 2'], ['row 2 cell 1','row 2 cell 2']],
+                               :start_from_row => 3
+	p @workbook.get_sheet_data("my_sheet_name")	
 
 By default it will assume redis is listening on localhost port 6379, to change it do this:
 
 	require 'rubygems'
 	require 'redisarray'
 	require 'redis'
+	include RedisArray
 	
 	RedisTable.set_redis Redis.new(:host => 'localhost', :port => 6379)
 	
