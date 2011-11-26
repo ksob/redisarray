@@ -20,13 +20,30 @@ Install
 =======
 
     gem install redisarray
-	
+
+Terminology
+===========
+
+1. A table is just 2 dimensional array so the RedisTable class would represent a single 2 dimensional array (if it would be instantiated).
+	An example of 2 dim array: 
+	- [ ['row 1 cell 1','row 1 cell 2'], ['row 2 cell 1','row 2 cell 2'] ]
+2. A sheet is the same as a table but used in a context of a workbook.
+3. A workbook is a container for sheets (2 dimensional array) so we can say it is the same as 3 dimensional array.
+	An example of 3 dim array: 
+	- [ [ ['r1c1','r1c2], ['r2c1','r2c2] ], [ ['r1c1','r1c2], ['r2c1','r2c2] ] ]
+
 Usage
 =====
 
-There are two classes worth noting:
-- RedisTable - where most of the action takes place
-- RedisWorkbook - a wrapper for RedisTable that simplifies storage of array of arrays or a workbook of worksheets with headers which is itself an array of arrays
+I will add some syntactic sugar for class names in the next release.
+For now there are these classes:
+
+1. RedisTable - where most of the action takes place, this class is not going to be instantiated, instead we should use it like this: RedisTable.set_table_data
+2. RedisWorkbook - a wrapper around RedisTable that simplifies storage of 3 dim arrays or in other words an array of worksheets with optional headers 
+3. RedisHashGroup - used as a namespace so that we can store workbooks (or 3D arrays) with the same name side by side. 
+	You can use it like this:
+	* RedisHashGroup.new.name - this will generate random namespace that does not exist in Redis yet 
+	* RedisHashGroup.new(:prefix => 'my_prefix_').name - the same as above but the namespace will include the prefix
 
 You can start using redisarray gem like this:
 
