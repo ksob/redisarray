@@ -207,29 +207,30 @@ describe RedisWorkbook do
         @workbook.set_sheet_data @sheet_name,
                                  rows = YAML.load_file(File.expand_path(File.join(File.dirname(__FILE__), "fixtures/five_rows.yaml"))),
                                  :start_from_row => 0
+
         @third_row = YAML::load(
-            <<-YAML
-          ---
-          - !str:CSV::Cell (five rows) row 3 cell 1
-          - !str:CSV::Cell (five rows) row 3 cell 2
-          - !str:CSV::Cell (five rows) row 3 cell 3
-          - !str:CSV::Cell (five rows) row 3 cell 4
-          - !str:CSV::Cell (five rows) row 3 cell 5
-          - !str:CSV::Cell
-          - !str:CSV::Cell
-          - !str:CSV::Cell
-        YAML
+<<-STR
+---
+- (five rows) row 3 cell 1
+- (five rows) row 3 cell 2
+- (five rows) row 3 cell 3
+- (five rows) row 3 cell 4
+- (five rows) row 3 cell 5
+- ""
+- ""
+- ""
+STR
         )
       end
 
       it "retrieves all sheet rows from redis" do
         @workbook.get_sheet_data_as_array(@sheet_name, rows = 0..-1)[2].
-            should == @third_row
+            should eql @third_row
       end
 
       it "retrieves single sheet row from redis" do
         @workbook.get_sheet_data_as_array(@sheet_name, rows = 2)[0].
-            should == @third_row
+            should eql @third_row
       end
     end
   end

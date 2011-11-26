@@ -14,7 +14,7 @@ How is that accomplished? All the data that is going to be written is just slice
 Compatibility
 =============
 
-So far compatible with ruby 1.8.7. Does not work with 1.9.2. There are a few adjustments needed concerning the use of CSV class which has significantly changed in 1.9.2.
+Ruby 1.8.7, 1.9.2 and 1.9.3
 	
 Install
 =======
